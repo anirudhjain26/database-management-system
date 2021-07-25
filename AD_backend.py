@@ -47,7 +47,7 @@ def add(id,dish_name,cuisine,price,num_sold,chef_special,tree_table):
 			except:
 				messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
 
-			cur.execute("INSERT INTO student (id,dish_name,cuisine,price,num_sold,chef_special) VALUES ('%s','%s','%s','%s','%s','%s')"%(id,dish_name,cuisine,price,num_sold,chef_special))
+			cur.execute("INSERT INTO menu (id,dish_name,cuisine,price,num_sold,chef_special) VALUES ('%s','%s','%s','%s','%s','%s')"%(id,dish_name,cuisine,price,num_sold,chef_special))
 			conn.commit()
 			
 			show_all_data(tree_table)
@@ -64,10 +64,10 @@ def delete(delete_id,tree_table):
 			conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 			cur=conn.cursor()
 		except:
-			messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
+			messagebox.showerror('Error','System can\'t connect with database for some reason')
 
 		delete_id = delete_id['values'][0]
-		cur.execute("DELETE FROM student WHERE roll='%s'"%(str(delete_id)))
+		cur.execute("DELETE FROM menu WHERE id='%s'"%(str(delete_id)))
 		conn.commit()
 		show_all_data(tree_table)
 	except:
