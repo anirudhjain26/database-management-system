@@ -1,11 +1,11 @@
 from tkinter import *
 from tkinter import ttk, messagebox
-import AD_backend##table name is student
+import menu##table name is student
 
 class Student:
 	def __init__(self,win):
 		self.win = win
-		self.win.title('School Management System')
+		self.win.title('Restaurant Management System')
 		self.win.geometry('1000x600+150+40')
 		self.bg = 'gray13'
 		self.fg = 'red2'
@@ -34,7 +34,7 @@ class Student:
 		####################################################
 		
 		##############HEADER#############
-		header = Label(self.win,text="School Management System",font=('algerian',40,''),bg=self.bg,fg=self.fg)
+		header = Label(self.win,text="Restaurant Management System",font=('algerian',40,''),bg=self.bg,fg=self.fg)
 		header.pack(side=TOP,fill=X)
 		#################################
 
@@ -88,11 +88,11 @@ class Student:
 		###########
 
 		##BUTTONS##
-		B_add = Button(field_frame,text='Add',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',15,'bold'),width=15,bd=10,command=lambda:AD_backend.add(E_roll_no.get(),E_name.get(),E_gender.get(),E_dob.get(),E_email.get(),E_phone_no.get(),self.table))
+		B_add = Button(field_frame,text='Add',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',15,'bold'),width=15,bd=10,command=lambda:menu.add(E_roll_no.get(),E_name.get(),E_gender.get(),E_dob.get(),E_email.get(),E_phone_no.get(),self.table))
 		B_add.grid(row=7,column=0,padx=15,sticky='w')
-		B_delete = Button(field_frame,text='Delete',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',15,'bold'),width=15,bd=10,command=lambda:AD_backend.delete(self.table.item(self.table.focus()),self.table))
+		B_delete = Button(field_frame,text='Delete',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',15,'bold'),width=15,bd=10,command=lambda:menu.delete(self.table.item(self.table.focus()),self.table))
 		B_delete.grid(row=7,column=1,sticky='w',padx=15)
-		B_update = Button(field_frame,text='Update',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',15,'bold'),width=15,bd=10,command=lambda:AD_backend.update(E_roll_no.get(),E_name.get(),E_gender.get(),E_dob.get(),E_email.get(),E_phone_no.get(),self.table))
+		B_update = Button(field_frame,text='Update',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',15,'bold'),width=15,bd=10,command=lambda:menu.update(E_roll_no.get(),E_name.get(),E_gender.get(),E_dob.get(),E_email.get(),E_phone_no.get(),self.table))
 		B_update.grid(row=8,column=0,pady=5,padx=15,sticky='w')
 		B_clear = Button(field_frame,text='Clear',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',15,'bold'),width=15,bd=10,command=clear)
 		B_clear.grid(row=8,column=1,pady=5,padx=15,sticky='w')
@@ -112,9 +112,9 @@ class Student:
 		search_by_options.grid(row=0,column=1,pady=10,sticky='w',padx=3)
 		E_search_by = Entry(info_frame,bg='gray30',fg=self.fg,font=('times',12,'bold'),width=20,bd=2)
 		E_search_by.grid(row=0,column=3,pady=10,sticky='w')
-		B_search_by = Button(info_frame,text='Search',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',9,'bold'),width=20,bd=3,command=lambda:AD_backend.set_search_by_option(search_by_options.get(),self.table,E_search_by.get()))
+		B_search_by = Button(info_frame,text='Search',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',9,'bold'),width=20,bd=3,command=lambda:menu.set_search_by_option(search_by_options.get(),self.table,E_search_by.get()))
 		B_search_by.grid(row=0,column=4,pady=10,padx=5,sticky='w')
-		B_showall = Button(info_frame,text='Show All',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',9,'bold'),width=30,bd=3,command=lambda:AD_backend.show_all_data(self.table))
+		B_showall = Button(info_frame,text='Show All',highlightbackground='#3E4149',bg=self.bg,fg=self.fg,font=('times',9,'bold'),width=30,bd=3,command=lambda:menu.show_all_data(self.table))
 		B_showall.grid(row=0,column=5,pady=10,sticky='w')
 		############
 

@@ -7,6 +7,7 @@ Database: Restaurant Management System
         - dish price
         - chef's special (yes/no)
         > id,dish_name,cuisine,price,num_sold,chef_special
+        > id char(20) not null , dish_name char(20) , cuisine char(20) , price int, num_sold int, chef_special boolean, primary key (id))
     - Table Inventory
         - (raw) material name
         - material code
@@ -14,6 +15,8 @@ Database: Restaurant Management System
         - cost
         - quantity
         - date of purchase
+        > id, material_name, material_type, cost, quantity, date_purchase
+        > id char(20) not null , material_name char(20) , material_type char(20) , cost int, quantity int, date_purchase DATE, primary key (id)
     - Table financials (aggregate)
         - total Sales (from table menu)
         - total expense (from table inventory + table salary)
