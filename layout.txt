@@ -26,4 +26,6 @@ Database: Restaurant Management System
         - employee code
         - employee hours
         - salary 
+        > code, e_name, e_hours, e_salary
+        > code char(20) not null , e_name char(20) , e_hours int, e_salary int, primary key (code)
 

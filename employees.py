@@ -9,7 +9,7 @@ def connect():
     except:
         messagebox.showerror('Error','System can\'t connect with database for some reason')
 
-    cur.execute("CREATE TABLE IF NOT EXISTS inventory(id char(20) not null , material_name char(20) , material_type char(20) , cost int, quantity int, date_purchase DATE, primary key (id))")
+    cur.execute("CREATE TABLE IF NOT EXISTS employees(code char(20) not null , e_name char(20) , e_hours int, e_salary int, primary key (code))")
     conn.commit()
 
 ####################################################### SHOW_ALL ##################################################################
@@ -21,7 +21,7 @@ def show_all_data(tree_table):
 	except:
 		messagebox.showerror('Error','System can\'t connect with database for some reason')
 
-	cur.execute("SELECT * FROM inventory")
+	cur.execute("SELECT * FROM employees")
 	data_rows = cur.fetchall()
 	tree_table.delete(*tree_table.get_children())
 	for row in data_rows:
@@ -31,16 +31,16 @@ def show_all_data(tree_table):
 
 ########################################################## ADD #####################################################################
 
-def add(id, material_name, material_type, cost, quantity, date_purchase,tree_table):
+def add(code, e_name, e_hours, e_salary,tree_table):
 	try:
-		if (id and material_name and material_type and cost and quantity and date_purchase) != '':
+		if (code and e_name and e_hours and e_salary) != '':
 			try:
 				conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 				cur=conn.cursor()
 			except:
-				messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
+				messagebox.showerror('Error','System can\'t connect with database for some reason')
 
-			cur.execute("INSERT INTO inventory (id, material_name, material_type, cost, quantity, date_purchase) VALUES ('%s','%s','%s','%s','%s','%s')"%(id, material_name, material_type, cost, quantity, date_purchase))
+			cur.execute("INSERT INTO employees (code, e_name, e_hours, e_salary) VALUES ('%s','%s','%s','%s','%s','%s')"%(code, e_name, e_hours, e_salary))
 			conn.commit()
 			
 			show_all_data(tree_table)
@@ -60,7 +60,7 @@ def delete(delete_id,tree_table):
 			messagebox.showerror('Error','System can\'t connect with database for some reason')
 
 		delete_id = delete_id['values'][0]
-		cur.execute("DELETE FROM inventory WHERE id='%s'"%(str(delete_id)))
+		cur.execute("DELETE FROM employees WHERE id='%s'"%(str(delete_id)))
 		conn.commit()
 		show_all_data(tree_table)
 	except:
@@ -70,14 +70,14 @@ def delete(delete_id,tree_table):
 
 ####################################################### UPDATE #####################################################################
 
-def update(id, material_name, material_type, cost, quantity, date_purchase,tree_table):
+def update(code, e_name, e_hours, e_salary,tree_table):
 	try:
 		conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 		cur=conn.cursor()
 	except:
 		messagebox.showerror('Error','System can\'t connect with database for some reason')
 
-	cur.execute("UPDATE inventory SET material_name = '%s', material_type = '%s', cost = '%s', quantity = '%s',date_purchase = '%s' WHERE id = '%s'"%(material_name, material_type, cost, quantity, date_purchase,id))
+	cur.execute("UPDATE employees SET e_name = '%s', e_hours = '%s', e_salary = '%s' WHERE code = '%s'"%(e_name, e_hours, e_salary,code))
 	conn.commit()
 	show_all_data(tree_table)
 
