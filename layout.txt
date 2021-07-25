@@ -6,7 +6,7 @@ Database: Restaurant Management System
         - no of dishes sold
         - dish price
         - chef's special (yes/no)
-        - id,dish_name,cuisine,price,num_sold,chef_special
+        > id,dish_name,cuisine,price,num_sold,chef_special
     - Table Inventory
         - (raw) material name
         - material code
