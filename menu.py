@@ -83,4 +83,15 @@ def update(id,dish_name,cuisine,price,num_sold,chef_special,tree_table):
 
 ####################################################################################################################################
 
+def getTotalSales(tree_table):
+	try: 
+		conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
+		cur=conn.cursor()
+	except:
+		messagebox.showerror('Error','System can\'t connect with database for some reason')
+
+	cur.execute("SELECT SUM(price*num_sold) from menu")
+	sales = cur.fetchone()
+	return sales
+
 connect()

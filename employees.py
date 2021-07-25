@@ -83,4 +83,15 @@ def update(code, e_name, e_hours, e_salary,tree_table):
 
 ####################################################################################################################################
 
+def getSalCost(tree_table):
+	try: 
+		conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
+		cur=conn.cursor()
+	except:
+		messagebox.showerror('Error','System can\'t connect with database for some reason')
+
+	cur.execute("SELECT SUM(salary) from employees")
+	cost = cur.fetchone()
+	return cost
+
 connect()

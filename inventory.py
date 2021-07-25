@@ -83,4 +83,16 @@ def update(id, material_name, material_type, cost, quantity, date_purchase,tree_
 
 ####################################################################################################################################
 
+def getInvCost(tree_table):
+	try: 
+		conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
+		cur=conn.cursor()
+	except:
+		messagebox.showerror('Error','System can\'t connect with database for some reason')
+
+	cur.execute("SELECT SUM(cost*quantity) from inventory")
+	cost = cur.fetchone()
+	return cost
+
+
 connect()
