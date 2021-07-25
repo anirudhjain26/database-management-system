@@ -11,24 +11,24 @@ from tkinter import ttk, messagebox
 
 def connect():
     try:
-        conn=mysql.connector.connect(user='root',password='anirudhJeeti',host='localhost',database='school_management')
+        conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
         cur=conn.cursor()
     except:
-        messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
+        messagebox.showerror('Error','System can\'t connect with database for some reason')
 
-    cur.execute("CREATE TABLE IF NOT EXISTS student (roll char(20) not null , name char(20) , gender char(10) , dob char(20) , email char(30) , phone char(11) , primary key (roll))")
+    cur.execute("CREATE TABLE IF NOT EXISTS menu(id char(20) not null , dish_name char(20) , cuisine char(20) , price int, num_sold int, chef_special boolean, primary key (id))")
     conn.commit()
 
 ####################################################### SHOW_ALL ##################################################################
 
 def show_all_data(tree_table):
 	try:
-		conn=mysql.connector.connect(user='root',password='ferrari1',host='localhost',database='school_management')
+		conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 		cur=conn.cursor()
 	except:
-		messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
+		messagebox.showerror('Error','System can\'t connect with database for some reason')
 
-	cur.execute("SELECT * FROM student")
+	cur.execute("SELECT * FROM menu")
 	data_rows = cur.fetchall()
 	tree_table.delete(*tree_table.get_children())
 	for row in data_rows:
@@ -38,16 +38,16 @@ def show_all_data(tree_table):
 
 ########################################################## ADD #####################################################################
 
-def add(roll,name,gender,dob,email,phone,tree_table):
+def add(id,dish_name,cuisine,price,num_sold,chef_special,tree_table):
 	try:
-		if (roll and name and gender and dob and email and phone) != '':
+		if (id and dish_name and cuisine and price and num_sold and chef_special) != '':
 			try:
-				conn=mysql.connector.connect(user='root',password='ferrari1',host='localhost',database='school_management')
+				conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 				cur=conn.cursor()
 			except:
 				messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
 
-			cur.execute("INSERT INTO student (roll,name,gender,dob,email,phone) VALUES ('%s','%s','%s','%s','%s','%s')"%(roll,name,gender,dob,email,phone))
+			cur.execute("INSERT INTO student (id,dish_name,cuisine,price,num_sold,chef_special) VALUES ('%s','%s','%s','%s','%s','%s')"%(id,dish_name,cuisine,price,num_sold,chef_special))
 			conn.commit()
 			
 			show_all_data(tree_table)
@@ -61,7 +61,7 @@ def add(roll,name,gender,dob,email,phone,tree_table):
 def delete(delete_id,tree_table):
 	try:
 		try:
-			conn=mysql.connector.connect(user='root',password='ferrari1',host='localhost',database='school_management')
+			conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 			cur=conn.cursor()
 		except:
 			messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
@@ -79,7 +79,7 @@ def delete(delete_id,tree_table):
 
 def update(roll,name,gender,dob,email,phone,tree_table):
 	try:
-		conn=mysql.connector.connect(user='root',password='ferrari1',host='localhost',database='school_management')
+		conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 		cur=conn.cursor()
 	except:
 		messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
@@ -95,7 +95,7 @@ def update(roll,name,gender,dob,email,phone,tree_table):
 def set_search_by_option(search_parameter,tree_table,search_parameter_entry):
 
 	try:
-		conn=mysql.connector.connect(user='root',password='ferrari1',host='localhost',database='school_management')
+		conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 		cur=conn.cursor()
 	except:
 		messagebox.showerror('Error','System can\'t connect with MySQL for some reason')

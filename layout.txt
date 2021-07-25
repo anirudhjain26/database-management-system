@@ -1,0 +1,26 @@
+Database: Restaurant Management System
+    - Table Menu
+        - dish name
+        - dish id
+        - cuisine
+        - no of dishes sold
+        - dish price
+        - chef's special (yes/no)
+        - id,dish_name,cuisine,price,num_sold,chef_special
+    - Table Inventory
+        - (raw) material name
+        - material code
+        - material type
+        - cost
+        - quantity
+        - date of purchase
+    - Table financials (aggregate)
+        - total Sales (from table menu)
+        - total expense (from table inventory + table salary)
+        - total profit 
+    - Table Employees
+        - employee name
+        - employee code
+        - employee hours
+        - salary 
+
