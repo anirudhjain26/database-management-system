@@ -77,14 +77,14 @@ def delete(delete_id,tree_table):
 
 ####################################################### UPDATE #####################################################################
 
-def update(roll,name,gender,dob,email,phone,tree_table):
+def update(id,dish_name,cuisine,price,num_sold,chef_special,tree_table):
 	try:
 		conn=mysql.connector.connect(user='root',password='12345',host='localhost',database='restaurant_management')
 		cur=conn.cursor()
 	except:
 		messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
 
-	cur.execute("UPDATE student SET name = '%s', gender = '%s', dob = '%s', email = '%s',phone = '%s' WHERE roll = '%s'"%(name,gender,dob,email,phone,roll))
+	cur.execute("UPDATE menu SET chef_special = '%s', dish_name = '%s', cuisine = '%s', price = '%s',num_sold = '%s' WHERE id = '%s'"%(chef_special,dish_name,cuisine,price,num_sold,id))
 	conn.commit()
 	show_all_data(tree_table)
 
@@ -100,20 +100,20 @@ def set_search_by_option(search_parameter,tree_table,search_parameter_entry):
 	except:
 		messagebox.showerror('Error','System can\'t connect with MySQL for some reason')
 
-	if search_parameter == 'Roll No.':
-		search_parameter = 'roll'
+	if search_parameter == 'ID':
+		search_parameter = 'id'
 	if search_parameter == 'Name':
-		search_parameter = 'name'
-	if search_parameter == 'Gender':
-		search_parameter = 'gender'
-	if search_parameter == 'Date of Birth':
-		search_parameter = 'dob'
-	if search_parameter == 'Email':
-		search_parameter = 'email'
-	if search_parameter == 'Phone No.':
-		search_parameter = 'phone'
+		search_parameter = 'dish_name'
+	if search_parameter == 'Cuisine':
+		search_parameter = 'cuisine'
+	if search_parameter == 'Price':
+		search_parameter = 'price'
+	if search_parameter == 'Num_Sold':
+		search_parameter = 'num_sold'
+	if search_parameter == 'Chef Special':
+		search_parameter = 'chef_special'
 
-	cur.execute("SELECT * FROM student WHERE %s = '%s'"%(search_parameter,search_parameter_entry))
+	cur.execute("SELECT * FROM menu WHERE %s = '%s'"%(search_parameter,search_parameter_entry))
 	data_rows = cur.fetchall()
 	tree_table.delete(*tree_table.get_children())
 	for row in data_rows:
